@@ -13,7 +13,7 @@ use App\Http\Controllers\Backend\SectionAboutController;
 use App\Http\Controllers\Backend\HeaderController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.pages.show');
 });
 
 Route::group(['prefix' => 'cihuy'], function () {
