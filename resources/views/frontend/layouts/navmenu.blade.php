@@ -23,31 +23,40 @@
                 <a href="{{ '#'  }}" class="flex flex-col items-center group">
                     <!-- Logo Icon -->
                     <div class="text-3xl font-bold mb-1">
-                        <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <img src="{{ asset('assets/apex favicon.jpeg') }}" alt="Apex Works Logo" class="w-20 h-20">
+                        {{-- <svg class="w-10 h-10" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 5L30 15L20 35L10 15L20 5Z" fill="currentColor"/>
                             <path d="M15 12L25 12L20 25L15 12Z" fill="white"/>
-                        </svg>
+                        </svg> --}}
                     </div>
-                    <span class="text-xl font-bold tracking-widest text-gray-900">LANYARDKENDAL</span>
+                    {{-- <span class="text-xl font-bold tracking-widest text-gray-900">APEX WORKS</span> --}}
                 </a>
             </div>
 
             <!-- Right Side - Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
-                <a href="{{ '#'  }}"
-                   class="text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors {{ request()->routeIs('home') ? 'text-gray-900 font-semibold' : '' }}">
-                    HOME
-                </a>
+                @foreach($navbarItems ?? [] as $item)
+                    @if($item->is_button)
+                        <a href="{{ $item->menu_url ?? '#' }}"
+                           @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                           class="text-sm font-medium tracking-wider transition-colors {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-6 py-2 hover:bg-gray-800' : 'border border-gray-900 px-6 py-2 hover:bg-gray-900 hover:text-white' }}">
+                            {{ strtoupper($item->menu_label) }}
+                        </a>
+                    @else
+                        <a href="{{ $item->menu_url ?? '#' }}"
+                           @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                           class="text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors {{ request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
+                            {{ strtoupper($item->menu_label) }}
+                        </a>
+                    @endif
+                @endforeach
+                
                 <button @click="searchOpen = !searchOpen" class="flex items-center text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors">
                     <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                     <span x-text="searchOpen ? 'CLOSE' : 'SEARCH'"></span>
                 </button>
-                <a href="{{ '#'  }}"
-                   class="text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors {{ request()->routeIs('kontak') ? 'text-gray-900 font-semibold' : '' }}">
-                    CONTACT
-                </a>
             </div>
 
             <!-- Mobile Right Menu -->
@@ -75,7 +84,7 @@
             <form action="{{ '#'  }}" method="GET" class="flex items-center border-b-2 border-gray-300 focus-within:border-gray-900 transition-colors">
                 <input type="text"
                        name="search"
-                       placeholder="Cari produk lanyard..."
+                       placeholder="Cari produk kami..."
                        class="flex-1 py-4 text-xl outline-none bg-transparent placeholder-gray-400"
                        x-ref="searchInput"
                        @keydown.escape="searchOpen = false"
@@ -131,24 +140,36 @@
 
         <!-- Sidebar Menu -->
         <div class="p-6 space-y-1">
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('home') ? 'text-gray-900 font-semibold' : '' }}">
-                HOME
-            </a>
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('produk') ? 'text-gray-900 font-semibold' : '' }}">
-                PRODUK
-            </a>
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('testimoni') ? 'text-gray-900 font-semibold' : '' }}">
-                TESTIMONI
-            </a>
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('portfolio') ? 'text-gray-900 font-semibold' : '' }}">
-                PORTOFOLIO
-            </a>
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('blog') ? 'text-gray-900 font-semibold' : '' }}">
-                BLOG
-            </a>
-            <a href="{{ '#'  }}" class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->routeIs('kontak') ? 'text-gray-900 font-semibold' : '' }}">
-                KONTAK
-            </a>
+            @foreach($sidebarItems ?? [] as $item)
+                @if($item->is_button)
+                    <a href="{{ $item->menu_url ?? '#' }}"
+                       @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                       class="block py-3 text-base tracking-wider transition-colors {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-4 py-3 hover:bg-gray-800' : 'border border-gray-900 px-4 py-3 hover:bg-gray-900 hover:text-white' }}">
+                        {{ strtoupper($item->menu_label) }}
+                    </a>
+                @else
+                    <a href="{{ $item->menu_url ?? '#' }}"
+                       @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                       class="block py-3 text-gray-700 hover:text-gray-900 transition-colors text-base tracking-wider {{ request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
+                        @if($item->menu_icon)
+                            <i class="{{ $item->menu_icon }} mr-2"></i>
+                        @endif
+                        {{ strtoupper($item->menu_label) }}
+                    </a>
+                    
+                    @if($item->children->count() > 0)
+                        <div class="ml-6 space-y-1">
+                            @foreach($item->children as $child)
+                                <a href="{{ $child->menu_url ?? '#' }}"
+                                   @if($child->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                                   class="block py-2 text-sm text-gray-600 hover:text-gray-900 transition-colors tracking-wider {{ request()->is(trim($child->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
+                                    {{ strtoupper($child->menu_label) }}
+                                </a>
+                            @endforeach
+                        </div>
+                    @endif
+                @endif
+            @endforeach
         </div>
     </div>
 </nav>

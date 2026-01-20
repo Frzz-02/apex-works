@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'LanyardKendal - Lanyard Custom Terpercaya')</title>
     <meta name="description" content="@yield('description', 'Spesialis lanyard custom berkualitas. Konsultasi, bantuan desain, opsi pengiriman, dan garansi kualitas.')">
+    <link rel="icon" type="image/jpeg" href="{{ asset('assets/apex favicon.jpeg') }}">
 
     <!-- Fonts - Luminaire Style -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
