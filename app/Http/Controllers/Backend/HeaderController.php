@@ -3,82 +3,109 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\Page;
+use App\Models\Navbar;
 use Illuminate\Http\Request;
 
 class HeaderController extends Controller
 {
     public function index()
     {
-        $header = Page::first();
-        return view('backend.header.index', compact('header'));
+        $navbars = Navbar::orderBy('menu_order')->get();
+        return view('backend.header.index', compact('navbars'));
     }
 
     public function create()
     {
-        // Check if data already exists
-        if (Page::count() > 0) {
-            return redirect()->route('backend.header.index')
-                ->with('error', 'Header/Navbar already exists. Please delete the existing data first.');
-        }
-
         return view('backend.header.create');
     }
 
     public function store(Request $request)
     {
-        // Check if data already exists
-        if (Page::count() > 0) {
-            return redirect()->route('backend.header.index')
-                ->with('error', 'Header/Navbar already exists. Please delete the existing data first.');
-        }
-
         $validated = $request->validate([
-            'slug' => 'nullable|string|unique:pages,slug|max:255',
-            'status' => 'required|in:draft,published',
-            'title' => 'required|string|max:255',
-            'template' => 'required|string|max:255',
-            'header_style' => 'required|string|max:255',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string',
+            'menu_label' => 'required|string|max:100',
+            'menu_slug' => 'required|string|max:100',
+            'menu_url' => 'nullable|string|max:255',
+            'menu_icon' => 'nullable|string|max:100',
+            'menu_location' => 'required|in:navbar,sidebar,both,footer',
+            'menu_order' => 'nullable|integer',
+            'parent_id' => 'nullable|exists:navbar,id',
+            'show_in_navbar' => 'nullable|boolean',
+            'show_in_sidebar' => 'nullable|boolean',
+            'show_in_footer' => 'nullable|boolean',
+            'is_external' => 'nullable|boolean',
+            'open_new_tab' => 'nullable|boolean',
+            'is_button' => 'nullable|boolean',
+            'button_style' => 'nullable|string|max:50',
+            'require_auth' => 'nullable|boolean',
+            'allowed_roles' => 'nullable|array',
+            'is_active' => 'nullable|boolean',
         ]);
 
-        Page::create($validated);
+        // Set default values for checkboxes
+        $validated['show_in_navbar'] = $request->has('show_in_navbar');
+        $validated['show_in_sidebar'] = $request->has('show_in_sidebar');
+        $validated['show_in_footer'] = $request->has('show_in_footer');
+        $validated['is_external'] = $request->has('is_external');
+        $validated['open_new_tab'] = $request->has('open_new_tab');
+        $validated['is_button'] = $request->has('is_button');
+        $validated['require_auth'] = $request->has('require_auth');
+        $validated['is_active'] = $request->has('is_active');
+
+        Navbar::create($validated);
 
         return redirect()->route('backend.header.index')
-            ->with('success', 'Header/Navbar created successfully.');
+            ->with('success', 'Menu item created successfully.');
     }
 
-    public function edit(Page $header)
+    public function edit(Navbar $header)
     {
-        return view('backend.header.edit', compact('header'));
+        $navbars = Navbar::where('id', '!=', $header->id)->get();
+        return view('backend.header.edit', compact('header', 'navbars'));
     }
 
-    public function update(Request $request, Page $header)
+    public function update(Request $request, Navbar $header)
     {
         $validated = $request->validate([
-            'slug' => 'nullable|string|max:255|unique:pages,slug,' . $header->id,
-            'status' => 'required|in:draft,published',
-            'title' => 'required|string|max:255',
-            'template' => 'required|string|max:255',
-            'header_style' => 'required|string|max:255',
-            'meta_title' => 'nullable|string|max:255',
-            'meta_description' => 'nullable|string',
-            'meta_keywords' => 'nullable|string',
+            'menu_label' => 'required|string|max:100',
+            'menu_slug' => 'required|string|max:100',
+            'menu_url' => 'nullable|string|max:255',
+            'menu_icon' => 'nullable|string|max:100',
+            'menu_location' => 'required|in:navbar,sidebar,both,footer',
+            'menu_order' => 'nullable|integer',
+            'parent_id' => 'nullable|exists:navbar,id',
+            'show_in_navbar' => 'nullable|boolean',
+            'show_in_sidebar' => 'nullable|boolean',
+            'show_in_footer' => 'nullable|boolean',
+            'is_external' => 'nullable|boolean',
+            'open_new_tab' => 'nullable|boolean',
+            'is_button' => 'nullable|boolean',
+            'button_style' => 'nullable|string|max:50',
+            'require_auth' => 'nullable|boolean',
+            'allowed_roles' => 'nullable|array',
+            'is_active' => 'nullable|boolean',
         ]);
+
+        // Set default values for checkboxes
+        $validated['show_in_navbar'] = $request->has('show_in_navbar');
+        $validated['show_in_sidebar'] = $request->has('show_in_sidebar');
+        $validated['show_in_footer'] = $request->has('show_in_footer');
+        $validated['is_external'] = $request->has('is_external');
+        $validated['open_new_tab'] = $request->has('open_new_tab');
+        $validated['is_button'] = $request->has('is_button');
+        $validated['require_auth'] = $request->has('require_auth');
+        $validated['is_active'] = $request->has('is_active');
 
         $header->update($validated);
 
         return redirect()->route('backend.header.index')
-            ->with('success', 'Header/Navbar updated successfully.');
+            ->with('success', 'Menu item updated successfully.');
     }
 
-    public function destroy(Page $header)
+    public function destroy(Navbar $header)
     {
         $header->delete();
 
         return redirect()->route('backend.header.index')
-            ->with('success', 'Header/Navbar deleted successfully.');
+            ->with('success', 'Menu item deleted successfully.');
     }
 }
