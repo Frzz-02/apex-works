@@ -11,10 +11,9 @@ use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\SectionHeroController;
 use App\Http\Controllers\Backend\SectionAboutController;
 use App\Http\Controllers\Backend\HeaderController;
+use App\Http\Controllers\Frontend\FrontendController;
 
-Route::get('/', function () {
-    return view('frontend.pages.show');
-});
+Route::get('/', [FrontendController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'cihuy'], function () {
 
