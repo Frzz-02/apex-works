@@ -13,72 +13,72 @@ class SectionHeroSeeder extends Seeder
     public function run(): void
     {
         $heroes = [
-            // Panel 1
+            // Panel 1: Fokus pada Kualitas/Keaslian
             [
-                'mood_tag' => 'PREMIUM QUALITY',
-                'title' => 'Lanyard Berkualitas Tinggi',
-                'description' => 'Bahan premium dengan hasil cetak tajam dan tahan lama. Tersedia berbagai pilihan bahan berkualitas.',
-                'cta_text' => 'READ MORE',
-                'cta_url' => '#',
-                'image_path' => 'assets/images/hero/bg-1.jpg',
-                'image_alt' => 'Premium Quality Lanyard',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&q=80',
+                'mood_tag' => 'PREMIUM SPAREPARTS',
+                'title' => 'Suku Cadang Kendaraan Orisinal & Terpercaya',
+                'description' => 'Tingkatkan performa mesin dengan sparepart original kualitas dunia. Solusi suku cadang lengkap untuk semua jenis merek kendaraan Anda.',
+                'cta_text' => 'CEK KATALOG',
+                'cta_url' => '#katalog',
+                'image_path' => 'assets/images/hero/bg-sparepart-1.jpg',
+                'image_alt' => 'Distributor Suku Cadang Mobil Orisinal',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&q=80',
                 'panel_order' => 1,
                 'is_active' => true,
             ],
             
-            // Panel 2
+            // Panel 2: Fokus pada Solusi Mesin/Kesehatan Kendaraan
             [
-                'mood_tag' => 'CUSTOM DESIGN',
-                'title' => 'Desain Sesuai Keinginan',
-                'description' => 'Tim desainer kami siap membantu mewujudkan desain impian Anda dengan revisi unlimited.',
-                'cta_text' => 'READ MORE',
-                'cta_url' => 'https://wa.me/6281316509191?text=Halo%20LanyardKendal,%20saya%20ingin%20konsultasi%20desain',
-                'image_path' => 'assets/images/hero/bg-2.jpg',
-                'image_alt' => 'Custom Design Service',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80',
+                'mood_tag' => 'ENGINE PERFORMANCE',
+                'title' => 'Solusi Performa Mesin Maksimal',
+                'description' => 'Temukan komponen mesin, transmisi, hingga sistem pengereman terbaik. Kami menjamin daya tahan komponen untuk keamanan berkendara Anda.',
+                'cta_text' => 'KONSULTASI TEKNIS',
+                'cta_url' => 'https://wa.me/6281316509191?text=Halo%20Admin,%20saya%20ingin%20konsultasi%20sparepart%20mesin',
+                'image_path' => 'assets/images/hero/bg-sparepart-2.jpg',
+                'image_alt' => 'Suku cadang mesin kendaraan berperforma tinggi',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&q=80',
                 'panel_order' => 2,
                 'is_active' => true,
             ],
             
-            // Panel 3
+            // Panel 3: Fokus pada Pengiriman & Kecepatan (SEO: Toko Sparepart Terdekat/Cepat)
             [
-                'mood_tag' => 'FAST SERVICE',
-                'title' => 'Same-Day Delivery',
-                'description' => 'Proses produksi cepat 1 hari kerja tanpa mengorbankan kualitas. Pengiriman tepat waktu.',
-                'cta_text' => 'READ MORE',
-                'cta_url' => 'https://wa.me/6281316509191?text=Halo%20LanyardKendal,%20saya%20butuh%20lanyard%20segera',
-                'image_path' => 'assets/images/hero/bg-3.jpg',
-                'image_alt' => 'Fast Service Delivery',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=800&q=80',
+                'mood_tag' => 'FAST DELIVERY',
+                'title' => 'Pengiriman Cepat & Stok Selalu Ready',
+                'description' => 'Pesan sekarang, kirim hari ini! Kami menyediakan pengiriman kilat untuk memastikan kendaraan Anda tidak tertahan lama di bengkel.',
+                'cta_text' => 'PESAN SEKARANG',
+                'cta_url' => 'https://wa.me/6281316509191?text=Halo%20Admin,%20saya%20ingin%20cek%20stok%20sparepart',
+                'image_path' => 'assets/images/hero/bg-sparepart-3.jpg',
+                'image_alt' => 'Toko sparepart mobil terdekat pengiriman cepat',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1562426509-5044a121aa49?w=800&q=80',
                 'panel_order' => 3,
                 'is_active' => true,
             ],
             
-            // Panel 4
+            // Panel 4: Fokus pada Harga (SEO: Harga Sparepart Murah/Grosir)
             [
-                'mood_tag' => 'BEST PRICE',
-                'title' => 'Harga Terjangkau',
-                'description' => 'Kualitas premium dengan harga bersahabat. Dapatkan diskon untuk pemesanan jumlah banyak.',
-                'cta_text' => 'READ MORE',
-                'cta_url' => '#',
-                'image_path' => 'assets/images/hero/bg-4.jpg',
-                'image_alt' => 'Best Price Guarantee',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+                'mood_tag' => 'BEST PRICE GUARANTEE',
+                'title' => 'Harga Grosir Suku Cadang Kompetitif',
+                'description' => 'Dapatkan penawaran harga sparepart termurah untuk pembelian retail maupun grosir. Kualitas bengkel resmi, harga ramah di kantong.',
+                'cta_text' => 'LIHAT PROMO',
+                'cta_url' => '#promo',
+                'image_path' => 'assets/images/hero/bg-sparepart-4.jpg',
+                'image_alt' => 'Grosir sparepart kendaraan murah berkualitas',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1552650278-3e344ee9462a?w=1200&q=80',
                 'panel_order' => 4,
                 'is_active' => true,
             ],
             
-            // Panel 5
+            // Panel 5: Fokus pada Kepercayaan (SEO: Toko Sparepart Terpercaya)
             [
-                'mood_tag' => 'TRUSTED PARTNER',
-                'title' => '1259+ Klien Puas',
-                'description' => 'Dipercaya perusahaan, instansi pemerintah, dan event organizer di seluruh Indonesia.',
-                'cta_text' => 'READ MORE',
-                'cta_url' => '#',
-                'image_path' => 'assets/images/hero/bg-5.jpg',
-                'image_alt' => 'Trusted Partner',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&q=80',
+                'mood_tag' => 'OFFICIAL DISTRIBUTOR',
+                'title' => 'Mitra Bengkel & Perusahaan Se-Indonesia',
+                'description' => 'Telah mensuplai ribuan suku cadang ke bengkel rekanan dan perusahaan ekspedisi di seluruh nusantara dengan jaminan garansi.',
+                'cta_text' => 'TENTANG KAMI',
+                'cta_url' => '#about',
+                'image_path' => 'assets/images/hero/bg-sparepart-5.jpg',
+                'image_alt' => 'Distributor suku cadang kendaraan terpercaya di Indonesia',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1504222490345-c075b6008014?w=1200&q=80',
                 'panel_order' => 5,
                 'is_active' => true,
             ],
