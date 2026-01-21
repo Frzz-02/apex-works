@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@yield('title', 'LanyardKendal - Lanyard Custom Terpercaya')</title>
+    <title>@yield('title', 'ApexWorks')</title>
     <meta name="description" content="@yield('description', 'Spesialis lanyard custom berkualitas. Konsultasi, bantuan desain, opsi pengiriman, dan garansi kualitas.')">
     <link rel="icon" type="image/jpeg" href="{{ asset('assets/apex favicon.jpeg') }}">
 

@@ -6,17 +6,30 @@
             <!-- Left Side - Hamburger & Lanyard Shop Button -->
             <div class="flex items-center space-x-4">
                 <!-- Hamburger Menu Button -->
-                <button type="button" @click="sidebarOpen = true" class="border border-gray-300 p-3 hover:bg-gray-50 transition-colors focus:outline-none">
+                <button type="button" @click="sidebarOpen = true" class="border border-gray-300 p-3 hover:bg-gray-50 transition-colors focus:outline-none rounded-xl">
                     <svg class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
                 </button>
 
                 <!-- Lanyard Shop Button -->
-                <a href="{{ '#'  }}" class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors">
-                    LANYARD SHOP
-                </a>
+                @foreach ($navbarItems ?? [] as $item)
+
+                    @if ($item->is_button)
+                        <a href="{{ $item->menu_url ?? "#" }}" 
+                             @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                            class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors rounded-xl">
+                           {{ $item->menu_label}}
+                        </a>
+                    @endif
+                    
+                @endforeach
             </div>
+
+            
+            
+            
+            
 
             <!-- Center - Logo -->
             <div class="flex-shrink-0">
@@ -33,16 +46,20 @@
                 </a>
             </div>
 
+            
+            
+            
+
             <!-- Right Side - Desktop Menu -->
             <div class="hidden md:flex items-center space-x-8">
                 @foreach($navbarItems ?? [] as $item)
-                    @if($item->is_button)
-                        <a href="{{ $item->menu_url ?? '#' }}"
-                           @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
+                    @if(!$item->is_button)
+                        {{-- <a href="{{ $item->menu_url ?? '#' }}"
+                           //@if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
                            class="text-sm font-medium tracking-wider transition-colors {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-6 py-2 hover:bg-gray-800' : 'border border-gray-900 px-6 py-2 hover:bg-gray-900 hover:text-white' }}">
                             {{ strtoupper($item->menu_label) }}
-                        </a>
-                    @else
+                        </a> --}}
+                    {{-- //@else --}}
                         <a href="{{ $item->menu_url ?? '#' }}"
                            @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
                            class="text-sm font-medium tracking-wider text-gray-700 hover:text-gray-900 transition-colors {{ request()->is(trim($item->menu_slug, '/')) ? 'text-gray-900 font-semibold' : '' }}">
@@ -69,6 +86,8 @@
             </div>
         </div>
     </div>
+    
+    
 
     <!-- Search Popup -->
     <div x-show="searchOpen"
@@ -96,6 +115,13 @@
             <p class="mt-4 text-sm text-gray-500 text-center">Tekan Enter untuk mencari atau Escape untuk menutup</p>
         </div>
     </div>
+    
+    
+    
+    
+    
+    
+    
 
     <!-- Sidebar Overlay -->
     <div x-show="sidebarOpen"
@@ -125,18 +151,31 @@
         <div class="p-6 border-b border-gray-200 bg-white">
             <div class="flex items-center space-x-4">
                 <!-- Close Button -->
-                <button type="button" @click="sidebarOpen = false" class="border border-gray-300 p-3 hover:bg-gray-50 transition-colors focus:outline-none">
+                <button type="button" @click="sidebarOpen = false" class="border rounded-xl border-gray-300 p-3 hover:bg-gray-50 transition-colors focus:outline-none">
                     <svg class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
+                
+                
 
                 <!-- Lanyard Shop Button -->
-                <a href="{{ '#'  }}" class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors">
+                <a href="{{ '#'  }}" class="border border-gray-900 px-6 py-3 text-sm font-medium tracking-wider hover:bg-gray-900 hover:text-white transition-colors rounded-xl">
                     LANYARD SHOP
                 </a>
+                
+                
+                
             </div>
         </div>
+        
+        
+        
+        
+        
+        
+        
+        
 
         <!-- Sidebar Menu -->
         <div class="p-6 space-y-1">
@@ -144,9 +183,10 @@
                 @if($item->is_button)
                     <a href="{{ $item->menu_url ?? '#' }}"
                        @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
-                       class="block py-3 text-base tracking-wider transition-colors {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-4 py-3 hover:bg-gray-800' : 'border border-gray-900 px-4 py-3 hover:bg-gray-900 hover:text-white' }}">
+                       class="block py-3 text-base tracking-wider transition-colors rounded-xl {{ $item->button_style === 'primary' ? 'bg-gray-900 text-white px-4 py-3 hover:bg-gray-800' : 'border border-gray-900 px-4 py-3 hover:bg-gray-900 hover:text-white' }}">
                         {{ strtoupper($item->menu_label) }}
                     </a>
+                    
                 @else
                     <a href="{{ $item->menu_url ?? '#' }}"
                        @if($item->open_new_tab) target="_blank" rel="noopener noreferrer" @endif
@@ -156,6 +196,8 @@
                         @endif
                         {{ strtoupper($item->menu_label) }}
                     </a>
+                    
+                    
                     
                     @if($item->children->count() > 0)
                         <div class="ml-6 space-y-1">
@@ -168,6 +210,8 @@
                             @endforeach
                         </div>
                     @endif
+                    
+                    
                 @endif
             @endforeach
         </div>

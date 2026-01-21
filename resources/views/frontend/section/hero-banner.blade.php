@@ -35,7 +35,7 @@
         @empty
         <!-- Default Panel - No Data -->
         <div class="panel-item relative overflow-hidden cursor-pointer group">
-            <img src="{{ asset('assets/images/hero/bg-1.jpg') }}"
+            <img src="{{ asset('assets/images/hero/slide-1.svg') }}"
                  alt="Hero Banner"
                  onerror="this.src='https://images.unsplash.com/photo-1586339949916-3e9457bef6d3?w=800&q=80'"
                  class="w-full h-full object-cover">
