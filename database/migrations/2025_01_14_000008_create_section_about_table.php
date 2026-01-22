@@ -6,46 +6,71 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('section_about', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('subtitle')->nullable();
-            $table->string('blockquote')->nullable();
-            $table->text('description')->nullable();
-            $table->string('checklist_1')->nullable();
-            $table->string('checklist_2')->nullable();
-            $table->string('checklist_3')->nullable();
-            $table->string('image')->nullable();
-            $table->string('image_2')->nullable();
-            $table->string('image_3')->nullable();
-            $table->string('image_4')->nullable();
-            $table->string('image_5')->nullable();
-            $table->string('image_6')->nullable();
-            $table->string('image_7')->nullable();
-            $table->string('image_8')->nullable();
-            $table->string('image_9')->nullable();
-            $table->string('image_10')->nullable();
-            $table->string('image_11')->nullable();
-            $table->string('image_12')->nullable();
-            $table->string('image_13')->nullable();
-            $table->string('image_14')->nullable();
-            $table->string('image_15')->nullable();
-            $table->string('image_16')->nullable();
-            $table->string('image_17')->nullable();
-            $table->string('image_18')->nullable();
-            $table->string('video_url')->nullable();
+            
+            // Section Header
+            $table->string('section_label', 100)->default('KEUNGGULAN KAMI');
+            $table->string('section_title', 255);
+            $table->text('section_description')->nullable();
+            
+            // Images (3 images in grid)
+            $table->enum('image_1_type', ['url', 'upload'])->default('upload');
+            $table->text('image_1_source')->nullable();
+            $table->string('image_1_alt', 255)->nullable();
+            
+            $table->enum('image_2_type', ['url', 'upload'])->default('upload');
+            $table->text('image_2_source')->nullable();
+            $table->string('image_2_alt', 255)->nullable();
+            
+            $table->enum('image_3_type', ['url', 'upload'])->default('upload');
+            $table->text('image_3_source')->nullable();
+            $table->string('image_3_alt', 255)->nullable();
+            
+            // Benefits
+            $table->string('benefit_title', 255)->default('Keuntungan memilih sparepart kami:');
+            
+            // Column 1
+            $table->string('benefit_1_text', 255)->nullable();
+            $table->string('benefit_1_icon', 100)->default('check');
+            $table->boolean('benefit_1_enabled')->default(true);
+            
+            $table->string('benefit_2_text', 255)->nullable();
+            $table->string('benefit_2_icon', 100)->default('check');
+            $table->boolean('benefit_2_enabled')->default(true);
+            
+            $table->string('benefit_3_text', 255)->nullable();
+            $table->string('benefit_3_icon', 100)->default('check');
+            $table->boolean('benefit_3_enabled')->default(true);
+            
+            // Column 2
+            $table->string('benefit_4_text', 255)->nullable();
+            $table->string('benefit_4_icon', 100)->default('check');
+            $table->boolean('benefit_4_enabled')->default(true);
+            
+            $table->string('benefit_5_text', 255)->nullable();
+            $table->string('benefit_5_icon', 100)->default('check');
+            $table->boolean('benefit_5_enabled')->default(true);
+            
+            $table->string('benefit_6_text', 255)->nullable();
+            $table->string('benefit_6_icon', 100)->default('check');
+            $table->boolean('benefit_6_enabled')->default(true);
+            
+            // Styling
+            $table->string('section_background', 50)->default('gray-100');
+            $table->string('label_color', 50)->default('blue-600');
+            $table->string('title_color', 50)->default('gray-900');
+            $table->string('description_color', 50)->default('gray-600');
+            $table->string('benefit_icon_color', 50)->default('blue-500');
+            
+            // Meta
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('section_about');

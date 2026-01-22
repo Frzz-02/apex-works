@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('slug')->unique()->nullable();
             $table->string('status')->default('draft');
             $table->string('title');
-            $table->string('template');
+            $table->enum('template', ['default', 'homepage', 'sidebar', 'page detail', 'coming soon'])->default('default');
             $table->string('header_style');
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();
