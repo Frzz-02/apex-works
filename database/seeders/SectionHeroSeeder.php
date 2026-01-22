@@ -64,7 +64,7 @@ class SectionHeroSeeder extends Seeder
                 'cta_url' => '#promo',
                 'image_path' => 'assets/images/hero/bg-sparepart-4.jpg',
                 'image_alt' => 'Grosir sparepart kendaraan murah berkualitas',
-                'fallback_image_url' => 'https://images.unsplash.com/photo-1552650278-3e344ee9462a?w=1200&q=80',
+                'fallback_image_url' => 'https://images.unsplash.com/photo-1635437536607-b8572f443763?auto=format&fit=crop&q=80&w=1200',
                 'panel_order' => 4,
                 'is_active' => true,
             ],
