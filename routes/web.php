@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\FrontendController;
 
 Route::get('/', [FrontendController::class, 'index'])->name('home');
 
+
 Route::group(['prefix' => 'cihuy'], function () {
 
     // Authentication Routes
@@ -28,7 +29,10 @@ Route::group(['prefix' => 'cihuy'], function () {
 Route::middleware(['auth'])->group(function () {
     Route::prefix('bagoosh')->name('backend.')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource('pages', App\Http\Controllers\Backend\PageController::class);
         
+                
         // Brand Routes
         Route::resource('brands', BrandController::class);
         
